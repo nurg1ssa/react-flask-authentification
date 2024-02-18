@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, session
 from flask_bcrypt import Bcrypt
+from flask_session import Session
 from config import ApplicationConfig 
 from models import db, User
 
@@ -7,6 +8,7 @@ app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
 
 bcrypt = Bcrypt(app)
+server_session = Session(app)
 db.init_app(app)
 
 with app.app_context():
