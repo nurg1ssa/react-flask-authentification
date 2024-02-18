@@ -5,6 +5,11 @@ import { User } from "../types";
 const LandingPage: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
 
+  const logoutUser = async () => {
+    await httpClient.post("//localhost:4556/logout");
+    window.location.href = "/";
+  };
+
   useEffect(() => {
     (async () => {
       try {
@@ -25,7 +30,7 @@ const LandingPage: React.FC = () => {
           <h3>ID: {user.id}</h3>
           <h3>Email: {user.email}</h3>
 
-          <button>Logout</button>
+          <button onClick={logoutUser}>Logout</button>
         </div>
       ) : (
         <div>
